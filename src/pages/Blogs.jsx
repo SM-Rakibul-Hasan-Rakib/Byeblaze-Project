@@ -1,11 +1,26 @@
-import React from "react";
-import Navbar from "../components/Navbar";
+import React, { useState } from "react";
+import { useLoaderData } from "react-router";
+import BlogCard from "../components/BlogCard";
+// import { json } from "express";
 
 const Blogs = () => {
+  const blogs = useLoaderData();
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 16;
+  const totalPages = Math.ceil(blogs.length / postsPerPage);
+  const pageBlogs = blogs.slice(
+    (currentPage - 1) * postsPerPage,
+    currentPage * postsPerPage,
+  );
+
+  const changePage = (page) => {
+    setCurrentPage(page);
+    document.querySelector("main")?.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <section className=" text-gray-100">
       <div
-        className="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12"
+        className="container mx-auto max-w-6xl space-y-6 p-6 pb-28 sm:space-y-12 md:pb-6"
         bis_skin_checked="1"
       >
         <a
@@ -14,170 +29,88 @@ const Blogs = () => {
           className="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 bg-gray-900"
         >
           <img
-            src="https://source.unsplash.com/random/480x360"
+            src={pageBlogs[0].cover_image}
             alt=""
             className="object-cover w-full h-64 rounded sm:h-96 lg:col-span-7 bg-gray-500"
           />
           <div className="p-6 space-y-2 lg:col-span-5" bis_skin_checked="1">
             <h3 className="text-2xl font-semibold sm:text-4xl group-hover:underline group-focus:underline">
-              Noster tincidunt reprimique ad pro
+              {pageBlogs[0].title}
             </h3>
-            <span className="text-xs text-gray-400">February 19, 2021</span>
-            <p>
-              Ei delenit sensibus liberavisse pri. Quod suscipit no nam. Est in
-              graece fuisset, eos affert putent doctus id.
-            </p>
+            <span className="text-xs text-gray-400">
+              {new Date(pageBlogs[0].created_at).toLocaleDateString()}
+            </span>
+            <p>{pageBlogs[0].description}</p>
           </div>
         </a>
         <div
           className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
           bis_skin_checked="1"
         >
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="max-w-sm mx-auto group hover:no-underline focus:no-underline bg-gray-900"
-          >
-            <img
-              role="presentation"
-              className="object-cover w-full rounded h-44 bg-gray-500"
-              src="https://source.unsplash.com/random/480x360?1"
-            />
-            <div className="p-6 space-y-2" bis_skin_checked="1">
-              <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                In usu laoreet repudiare legendos
-              </h3>
-              <span className="text-xs text-gray-400">January 21, 2021</span>
-              <p>
-                Mei ex aliquid eleifend forensibus, quo ad dicta apeirian
-                neglegentur, ex has tantas percipit perfecto. At per tempor
-                albucius perfecto, ei probatus consulatu patrioque mea, ei
-                vocent delicata indoctum pri.
-              </p>
-            </div>
-          </a>
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="max-w-sm mx-auto group hover:no-underline focus:no-underline bg-gray-900"
-          >
-            <img
-              role="presentation"
-              className="object-cover w-full rounded h-44 bg-gray-500"
-              src="https://source.unsplash.com/random/480x360?2"
-            />
-            <div className="p-6 space-y-2" bis_skin_checked="1">
-              <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                In usu laoreet repudiare legendos
-              </h3>
-              <span className="text-xs text-gray-400">January 22, 2021</span>
-              <p>
-                Mei ex aliquid eleifend forensibus, quo ad dicta apeirian
-                neglegentur, ex has tantas percipit perfecto. At per tempor
-                albucius perfecto, ei probatus consulatu patrioque mea, ei
-                vocent delicata indoctum pri.
-              </p>
-            </div>
-          </a>
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="max-w-sm mx-auto group hover:no-underline focus:no-underline bg-gray-900"
-          >
-            <img
-              role="presentation"
-              className="object-cover w-full rounded h-44 bg-gray-500"
-              src="https://source.unsplash.com/random/480x360?3"
-            />
-            <div className="p-6 space-y-2" bis_skin_checked="1">
-              <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                In usu laoreet repudiare legendos
-              </h3>
-              <span className="text-xs text-gray-400">January 23, 2021</span>
-              <p>
-                Mei ex aliquid eleifend forensibus, quo ad dicta apeirian
-                neglegentur, ex has tantas percipit perfecto. At per tempor
-                albucius perfecto, ei probatus consulatu patrioque mea, ei
-                vocent delicata indoctum pri.
-              </p>
-            </div>
-          </a>
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="max-w-sm mx-auto group hover:no-underline focus:no-underline bg-gray-900 hidden sm:block"
-          >
-            <img
-              role="presentation"
-              className="object-cover w-full rounded h-44 bg-gray-500"
-              src="https://source.unsplash.com/random/480x360?4"
-            />
-            <div className="p-6 space-y-2" bis_skin_checked="1">
-              <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                In usu laoreet repudiare legendos
-              </h3>
-              <span className="text-xs text-gray-400">January 24, 2021</span>
-              <p>
-                Mei ex aliquid eleifend forensibus, quo ad dicta apeirian
-                neglegentur, ex has tantas percipit perfecto. At per tempor
-                albucius perfecto, ei probatus consulatu patrioque mea, ei
-                vocent delicata indoctum pri.
-              </p>
-            </div>
-          </a>
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="max-w-sm mx-auto group hover:no-underline focus:no-underline bg-gray-900 hidden sm:block"
-          >
-            <img
-              role="presentation"
-              className="object-cover w-full rounded h-44 bg-gray-500"
-              src="https://source.unsplash.com/random/480x360?5"
-            />
-            <div className="p-6 space-y-2" bis_skin_checked="1">
-              <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                In usu laoreet repudiare legendos
-              </h3>
-              <span className="text-xs text-gray-400">January 25, 2021</span>
-              <p>
-                Mei ex aliquid eleifend forensibus, quo ad dicta apeirian
-                neglegentur, ex has tantas percipit perfecto. At per tempor
-                albucius perfecto, ei probatus consulatu patrioque mea, ei
-                vocent delicata indoctum pri.
-              </p>
-            </div>
-          </a>
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="max-w-sm mx-auto group hover:no-underline focus:no-underline bg-gray-900 hidden sm:block"
-          >
-            <img
-              role="presentation"
-              className="object-cover w-full rounded h-44 bg-gray-500"
-              src="https://source.unsplash.com/random/480x360?6"
-            />
-            <div className="p-6 space-y-2" bis_skin_checked="1">
-              <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                In usu laoreet repudiare legendos
-              </h3>
-              <span className="text-xs text-gray-400">January 26, 2021</span>
-              <p>
-                Mei ex aliquid eleifend forensibus, quo ad dicta apeirian
-                neglegentur, ex has tantas percipit perfecto. At per tempor
-                albucius perfecto, ei probatus consulatu patrioque mea, ei
-                vocent delicata indoctum pri.
-              </p>
-            </div>
-          </a>
+          {pageBlogs.slice(1).map((blog) => (
+            <BlogCard blog={blog} key={blog.id}></BlogCard>
+          ))}
         </div>
-        <div className="flex justify-center" bis_skin_checked="1">
+        <div
+          className="flex justify-center space-x-1 pt-2 text-gray-100"
+          bis_skin_checked="1"
+        >
           <button
+            title="previous"
             type="button"
-            className="px-6 py-3 text-sm rounded-md hover:underline bg-gray-900 text-gray-400"
+            disabled={currentPage === 1}
+            onClick={() => changePage(currentPage - 1)}
+            className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md bg-gray-900 border-gray-800 disabled:opacity-40"
           >
-            Load more posts...
+            <svg
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-4"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+
+          {[1, 2, 3]
+            .filter((page) => page <= totalPages)
+            .map((page) => (
+              <button
+                key={page}
+                type="button"
+                title={`Page ${page}`}
+                onClick={() => changePage(page)}
+                className={`inline-flex items-center justify-center w-8 h-8 text-sm border rounded shadow-md bg-gray-900 ${
+                  currentPage === page
+                    ? "text-violet-400 border-violet-400 font-semibold"
+                    : "border-gray-800"
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+
+          <button
+            title="next"
+            type="button"
+            disabled={currentPage === totalPages}
+            onClick={() => changePage(currentPage + 1)}
+            className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md bg-gray-900 border-gray-800 disabled:opacity-40"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-4"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
           </button>
         </div>
       </div>
