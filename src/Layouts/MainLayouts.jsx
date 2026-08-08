@@ -1,17 +1,18 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router";
-import Blogs from "../pages/Blogs";
-import Home from "../pages/Home";
-import Bookmarks from "../pages/Bookmarks";
+import Footer from "../components/Footer";
 
 const MainLayouts = () => {
   return (
-    <div>
-      <div className="h-16">
+    <div className="flex h-dvh flex-col overflow-hidden">
+      <div className="h-16 shrink-0">
         <Navbar />
       </div>
-      <Outlet />
+      <main className="min-h-0 flex-1 overflow-y-auto">
+        <Outlet />
+      </main>
+      <Footer />
     </div>
   );
 };

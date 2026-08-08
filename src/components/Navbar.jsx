@@ -27,7 +27,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "font-bold text-primary" : ""
+            isActive ? "font-bold text-primary" : "font-bold"
           }
         >
           Home
@@ -38,7 +38,7 @@ const Navbar = () => {
         <NavLink
           to="/blogs"
           className={({ isActive }) =>
-            isActive ? "font-bold text-primary" : ""
+            isActive ? "font-bold text-primary" : "font-bold"
           }
         >
           Blogs
@@ -49,7 +49,7 @@ const Navbar = () => {
         <NavLink
           to="/bookmarks"
           className={({ isActive }) =>
-            isActive ? "font-bold text-primary" : ""
+            isActive ? "font-bold text-primary" : "font-bold"
           }
         >
           Bookmarks
@@ -66,9 +66,9 @@ const Navbar = () => {
         <div className="flex-1">
           <Link
             to="/"
-            className="text-2xl md:text-3xl font-extrabold text-primary"
+            className="text-2xl md:text-3xl  font-extrabold text-secondary"
           >
-            ByteBlaze
+            Byte<span className="text-primary">Blaze</span>
           </Link>
         </div>
 

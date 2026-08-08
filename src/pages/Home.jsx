@@ -1,10 +1,9 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-
+import Hero from "../components/Hero";
 const Home = () => {
   return (
-    <div className="">
-      <h1>HomePage</h1>
+    <div className="h-full w-full">
+      <Hero />
     </div>
   );
 };
