@@ -41,10 +41,14 @@ export const router = createBrowserRouter([
           {
             index: true, // This makes <Content /> the default view
             element: <Content />,
+            loader: ({ params }) =>
+              fetch(`https://dev.to/api/articles/${params.id}`),
           },
           {
             path: "author", // Changed from index: "author" to path: "author"
             element: <Author />,
+            loader: ({ params }) =>
+              fetch(`https://dev.to/api/articles/${params.id}`),
           },
         ],
       },
