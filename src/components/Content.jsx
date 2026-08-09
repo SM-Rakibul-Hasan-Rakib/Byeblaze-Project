@@ -1,9 +1,19 @@
 import React from "react";
 import { useLoaderData } from "react-router";
 import placeHolderImage from "../assets/404.jpg";
+import Markdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 const Content = () => {
   const blog = useLoaderData();
-  const { cover_image, title, description, published_at, id, tags = [] } = blog;
+  const {
+    cover_image,
+    title,
+    body_html,
+    description,
+    published_at,
+    id,
+    tags = [],
+  } = blog;
   return (
     <div
       rel="noopener noreferrer"
@@ -28,6 +38,13 @@ const Content = () => {
             </a>
           ))}
         </div>
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-2xl font-semibold group-hover:underline cursor-pointer">
+          {title}
+        </h3>
+        <Markdown rehypePlugins={[rehypeRaw]}>{body_html}</Markdown>
+        {/* {body_html} */}
       </div>
     </div>
   );
