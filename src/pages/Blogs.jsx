@@ -8,6 +8,11 @@ const Blogs = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 16;
   const totalPages = Math.ceil(blogs.length / postsPerPage);
+  const firstVisiblePage = Math.floor((currentPage - 1) / 3) * 3 + 1;
+  const visiblePages = Array.from(
+    { length: Math.min(3, totalPages - firstVisiblePage + 1) },
+    (_, index) => firstVisiblePage + index,
+  );
   const pageBlogs = blogs.slice(
     (currentPage - 1) * postsPerPage,
     currentPage * postsPerPage,
@@ -75,9 +80,7 @@ const Blogs = () => {
             </svg>
           </button>
 
-          {[1, 2, 3]
-            .filter((page) => page <= totalPages)
-            .map((page) => (
+          {visiblePages.map((page) => (
               <button
                 key={page}
                 type="button"

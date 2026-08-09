@@ -17,13 +17,13 @@ const BlogCard = ({ blog }) => {
         src={cover_image || placeHolderImage}
       />
       <div className="p-6 space-y-2" bis_skin_checked="1">
-        <h3 className="text-2xl font-semibold group-hover:underline text-black group-focus:underline">
+        <h3 className="text-2xl font-semibold group-hover:underline text-base-content group-focus:underline">
           {title}
         </h3>
-        <span className="text-xs text-black">
+        <span className="text-xs text-base-content/60">
           {new Date(published_at).toLocaleDateString()}
         </span>
-        <p className="text-black">{description}</p>
+        <p className="text-base-content/70">{description}</p>
       </div>
     </Link>
   );

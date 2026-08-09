@@ -8,28 +8,8 @@ import Home from "./pages/Home.jsx";
 import Blogs from "./pages/Blogs.jsx";
 import Bookmarks from "./pages/Bookmarks.jsx";
 import MainLayouts from "./Layouts/MainLayouts.jsx";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainLayouts />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/blogs",
-        element: <Blogs />,
-        loader: () => fetch("https://dev.to/api/articles?per_page=500&top=10"),
-      },
-      {
-        path: "/bookmarks",
-        element: <Bookmarks />,
-      },
-    ],
-  },
-]);
+import Blog from "./pages/Blog.jsx";
+import { router } from "./routes/Routes.jsx";
 
 createRoot(document.getElementById("root")).render(
   <RouterProvider router={router} />,
