@@ -1,10 +1,13 @@
-import React from "react";
 import { ClockLoader } from "react-spinners";
 
 const Loader = () => {
   return (
-    <div className="flex flex-col justify-center items-center min">
-      <ClockLoader size={100}></ClockLoader>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-gray-950/70 backdrop-blur-sm"
+      role="status"
+      aria-label="Loading page"
+    >
+      <ClockLoader size={56} color="#8b5cf6" speedMultiplier={0.9} />
     </div>
   );
 };

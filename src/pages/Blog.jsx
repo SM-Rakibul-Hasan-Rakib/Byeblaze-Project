@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link, Outlet, useLoaderData } from "react-router";
+import { MdBookmarkAdd } from "react-icons/md";
 
 const Blog = () => {
   const blog = useLoaderData();
+
   const [tabIndex, setTabIndex] = useState(0);
   const {
     title,
@@ -15,6 +17,11 @@ const Blog = () => {
     description,
     user,
   } = blog;
+
+  const handleBookMark = (blog) => {
+    console.log(blog);
+  };
+
   return (
     <div>
       <div
@@ -97,6 +104,14 @@ const Blog = () => {
                 </svg>
                 <span>Author</span>
               </Link>
+
+              {/* Bookmark-icon */}
+              <div
+                onClick={() => handleBookMark(blog)}
+                className=" bg-primary p-3 ml-5 rounded-full hover:bg-opacity-30 bg-opacity-20  text-xl cursor-pointer overflow-hidden"
+              >
+                <MdBookmarkAdd size={20} className="text-secondary" />
+              </div>
             </div>
           </div>
           <div className="" bis_skin_checked="1">

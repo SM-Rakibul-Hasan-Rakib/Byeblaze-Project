@@ -81,20 +81,20 @@ const Blogs = () => {
           </button>
 
           {visiblePages.map((page) => (
-              <button
-                key={page}
-                type="button"
-                title={`Page ${page}`}
-                onClick={() => changePage(page)}
-                className={`inline-flex items-center justify-center w-8 h-8 text-sm border rounded shadow-md bg-gray-900 ${
-                  currentPage === page
-                    ? "text-violet-400 border-violet-400 font-semibold"
-                    : "border-gray-800"
-                }`}
-              >
-                {page}
-              </button>
-            ))}
+            <button
+              key={page}
+              type="button"
+              title={`Page ${page}`}
+              onClick={() => changePage(page)}
+              className={`inline-flex items-center justify-center w-8 h-8 text-sm border rounded shadow-md bg-gray-900 ${
+                currentPage === page
+                  ? "text-violet-400 border-violet-400 font-semibold"
+                  : "border-gray-800"
+              }`}
+            >
+              {page}
+            </button>
+          ))}
 
           <button
             title="next"
